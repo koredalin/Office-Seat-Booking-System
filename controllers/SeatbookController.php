@@ -3,10 +3,13 @@
 namespace app\controllers;
 
 use app\models\SeatBook;
+use app\models\Employee;
+use app\models\Office;
 use app\models\search\SeatBookSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use app\services\DateTimeManager as DtManager;
 
 /**
@@ -78,9 +81,14 @@ class SeatbookController extends Controller
         } else {
             $model->loadDefaultValues();
         }
+        
+        $employees = ArrayHelper::map(Employee::find()->all(), 'id', 'email');
+        $offices = ArrayHelper::map(Office::find()->all(), 'id', 'office_name');
 
         return $this->render('create', [
             'model' => $model,
+            'employees' => $employees,
+            'offices' => $offices,
         ]);
     }
 

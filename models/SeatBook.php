@@ -19,6 +19,60 @@ use app\models\Seat;
  */
 class SeatBook extends \yii\db\ActiveRecord
 {
+    public int $officeId = 0;
+    public string $bookDate = '';
+    const PART_DAY_RESERVATION = 'part_day';
+    const WHOLE_DAY_RESERVATION = 'whole_day';
+    public string $reservationTimeType = '';
+    const RESERVATION_DAY_TIME_SLOTS = [
+        '8:00-8:59' => [
+            'label' => '8:00-8:59',
+            'timeStart' => '8:00:00',
+            'timeEnd' => '8:59:59',
+        ],
+        '9:00-9:59' => [
+            'label' => '9:00-9:59',
+            'timeStart' => '9:00:00',
+            'timeEnd' => '9:59:59',
+        ],
+        '10:00-10:59' => [
+            'label' => '10:00-10:59',
+            'timeStart' => '10:00:00',
+            'timeEnd' => '10:59:59',
+        ],
+        '11:00-11:59' => [
+            'label' => '11:00-11:59',
+            'timeStart' => '11:00:00',
+            'timeEnd' => '11:59:59',
+        ],
+        '12:00-12:59' => [
+            'label' => '12:00-12:59',
+            'timeStart' => '12:00:00',
+            'timeEnd' => '12:59:59',
+        ],
+        '13:00-13:59' => [
+            'label' => '13:00-13:59',
+            'timeStart' => '13:00:00',
+            'timeEnd' => '13:59:59',
+        ],
+        '14:00-14:59' => [
+            'label' => '14:00-14:59',
+            'timeStart' => '14:00:00',
+            'timeEnd' => '14:59:59',
+        ],
+        '15:00-15:59' => [
+            'label' => '15:00-15:59',
+            'timeStart' => '15:00:00',
+            'timeEnd' => '15:59:59',
+        ],
+        '16:00-16:59' => [
+            'label' => '16:00-16:59',
+            'timeStart' => '16:00:00',
+            'timeEnd' => '16:59:59',
+        ],
+    ];
+    public array $reservationDayTimeSlots = [];
+    
     /**
      * {@inheritdoc}
      */
@@ -34,8 +88,8 @@ class SeatBook extends \yii\db\ActiveRecord
     {
         return [
             [['employee_id', 'seat_id', 'start_time', 'end_time', 'created_at', 'updated_at'], 'required'],
-            [['employee_id', 'seat_id'], 'integer'],
-            [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
+            [['employee_id', 'officeId', 'seat_id'], 'integer'],
+            [['bookDate', 'reservationTimeType', 'start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
