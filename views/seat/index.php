@@ -28,12 +28,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'office_id',
+            [
+                'label' => 'Office Name',
+                'attribute' => 'office_name',
+//                'filter' => Html::activeInput('text', $searchModel, 'office_name', ['class' => 'form-control']),
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return $data->office->office_name;
+                },
+            ],
             'office_seat_id',
             'created_at',
             'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete}',
+            ],
         ],
     ]); ?>
 

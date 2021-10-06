@@ -11,10 +11,8 @@ use yii\widgets\ActiveForm;
 <div class="seat-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'office_id')->textInput() ?>
-
-    <?= $form->field($model, 'office_seat_id')->textInput() ?>
+    
+    <?php echo $form->field($model, 'office_id')->dropDownList($offices, ['prompt' => 'Choose an office']); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

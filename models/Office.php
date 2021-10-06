@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "offices".
  *
  * @property int $id
- * @property int $office_name
+ * @property string $office_name
  * @property string $created_at
  * @property string $updated_at
  */
@@ -29,8 +29,7 @@ class Office extends \yii\db\ActiveRecord
     {
         return [
             [['office_name', 'created_at', 'updated_at'], 'required'],
-            [['office_name'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['office_name', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 

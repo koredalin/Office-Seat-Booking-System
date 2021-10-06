@@ -7,6 +7,7 @@ use app\models\search\SeatBookSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\services\DateTimeManager as DtManager;
 
 /**
  * SeatbookController implements the CRUD actions for SeatBook model.
@@ -69,6 +70,8 @@ class SeatbookController extends Controller
         $model = new SeatBook();
 
         if ($this->request->isPost) {
+            $model->created_at = DtManager::nowStr();
+            $model->updated_at = DtManager::nowStr();
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -91,6 +94,7 @@ class SeatbookController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->updated_at = DtManager::nowStr();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

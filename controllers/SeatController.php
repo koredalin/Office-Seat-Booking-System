@@ -3,10 +3,13 @@
 namespace app\controllers;
 
 use app\models\Seat;
+use app\models\Office;
 use app\models\search\SeatSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use app\services\DateTimeManager as DtManager;
 
 /**
  * SeatController implements the CRUD actions for Seat model.
@@ -69,15 +72,23 @@ class SeatController extends Controller
         $model = new Seat();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            $post = $this->request->post();
+            $officeId = isset($post['Seat']['office_id']) ? (int)$post['Seat']['office_id'] : 0;
+            $model->office_seat_id = $officeId == 0 ? $officeId++ : Seat::find()->getMaxOfficeSeatId($officeId) + 1;
+            $model->created_at = DtManager::nowStr();
+            $model->updated_at = DtManager::nowStr();
+            if ($model->load($post) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
         }
+        
+        $offices = ArrayHelper::map(Office::find()->all(), 'id', 'office_name');
 
         return $this->render('create', [
             'model' => $model,
+            'offices' => $offices,
         ]);
     }
 
@@ -90,15 +101,9 @@ class SeatController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        // Forbidden functionality
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->redirect(['index']);
     }
 
     /**

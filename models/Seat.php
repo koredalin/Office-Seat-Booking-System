@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\Office;
+use app\models\SeatBook;
 
 /**
  * This is the model class for table "seats".
@@ -47,6 +49,26 @@ class Seat extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * Gets query for [[Office]].
+     *
+     * @return \yii\db\ActiveQuery|\app\models\queries\OfficesQuery
+     */
+    public function getOffice()
+    {
+        return $this->hasOne(Office::className(), ['id' => 'office_id']);
+    }
+
+    /**
+     * Gets query for [[SeatsBook]].
+     *
+     * @return \yii\db\ActiveQuery|\app\models\queries\SeatBookQuery
+     */
+    public function getSeatsBooks()
+    {
+        return $this->hasMany(SeatBook::className(), ['seat_id' => 'id']);
     }
 
     /**
