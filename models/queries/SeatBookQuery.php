@@ -41,13 +41,15 @@ class SeatBookQuery extends \yii\db\ActiveQuery
     public function getOfficeReservedSeats(int $officeId, string $bookingDate, int $timeSlotId)
     {
         $timeSlotIds = array_merge([$timeSlotId], [SeatBookTimeSlot::WHOLE_WORKING_DAY_ID]);
-//        print_r($timeSlotIds); exit;
-        $result = $this->where([
-            'office_id' => $officeId,
-            'booking_date' => $bookingDate,
-            'seat_book_time_slot_id' => $timeSlotIds
-        ])->all();
-        
+        $result = $this->select('seats_book.*')
+            ->innerJoin('seats')
+            ->where([
+                'seats.office_id' => $officeId,
+                'booking_date' => $bookingDate,
+                'seat_book_time_slot_id' => $timeSlotIds
+            ])
+            ->all();
+//        print_r($result); exit;
         return $result;
     }
 }

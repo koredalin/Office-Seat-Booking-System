@@ -40,8 +40,8 @@ class AppAsset extends AssetBundle
     {
         $ctrlAct = \Yii::$app->controller->id . '-' . \Yii::$app->controller->action->id;
 //            echo $ctrlAct; exit;
-        if (in_array($ctrlAct, ['seatbook-OfficeSeats',], true)) {
-                $this->js[] = 'js/kyc_user.js';
+        if (in_array($ctrlAct, ['seatbook-create',], true)) {
+                $this->js[] = 'js/seatbook_create.js';
         }
 	}
 }

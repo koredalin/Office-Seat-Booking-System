@@ -8,6 +8,9 @@ use app\models\SeatBook;
 /* @var $this yii\web\View */
 /* @var $model app\models\SeatBook */
 /* @var $form yii\widgets\ActiveForm */
+
+
+ echo '<script>let officeSeatsUrl = \''.\Yii::$app->getUrlManager()->createUrl('seatbook/officeseats').'\';</script>';
 ?>
 
 <div class="seat-book-form">
@@ -29,7 +32,6 @@ use app\models\SeatBook;
             //'language' => 'ru',
             'dateFormat' => 'yyyy-MM-dd',
             'options' => ['class' => 'form-control',],
-            'inline' => true,
             'clientOptions' => [
                 'minDate' => 'today',
                 'maxDate' => '+1m',

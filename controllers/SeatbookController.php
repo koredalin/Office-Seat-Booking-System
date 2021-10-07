@@ -99,10 +99,10 @@ class SeatbookController extends Controller
     public function actionOfficeseats(int $officeId, string $bookingDate, int $timeSlotId)
     {
         $result = [];
-        $result['allOfficeSeats'] = ArrayHelper::map(Seat::find()->getOfficeAllSeats($officeId), 'id', 'seat_id');
-        $result['reservedOfficeSeats'] = ArrayHelper::map(SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId), 'id', 'seat_id');
+        $result['allOfficeSeats'] = ArrayHelper::map(Seat::find()->getOfficeAllSeats($officeId), 'id', 'office_seat_id');
+        $result['reservedOfficeSeats'] = ArrayHelper::getColumn(SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId), 'seat_id');
         
-        return $this->asJson($result);
+        return $this->asJson(\json_encode($result));
     }
 
     /**
