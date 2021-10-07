@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Seat;
 use app\models\SeatBook;
+use app\models\SeatBookTimeSlot;
 use app\models\Employee;
 use app\models\Office;
 use app\models\search\SeatBookSearch;
@@ -11,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\services\DateTimeManager as DtManager;
+use app\services\SeatBookService;
 
 /**
  * SeatbookController implements the CRUD actions for SeatBook model.
@@ -73,9 +76,8 @@ class SeatbookController extends Controller
         $model = new SeatBook();
 
         if ($this->request->isPost) {
-            $model->created_at = DtManager::nowStr();
-            $model->updated_at = DtManager::nowStr();
-            if ($model->load($this->request->post()) && $model->save()) {
+            $service = new SeatBookService();
+            if ($service->book($this->request->post())) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -84,12 +86,23 @@ class SeatbookController extends Controller
         
         $employees = ArrayHelper::map(Employee::find()->all(), 'id', 'email');
         $offices = ArrayHelper::map(Office::find()->all(), 'id', 'office_name');
+        $dayTimeSlotsItems = ArrayHelper::map(SeatBookTimeSlot::find()->all(), 'id', 'label');
 
         return $this->render('create', [
             'model' => $model,
             'employees' => $employees,
             'offices' => $offices,
+            'dayTimeSlotsItems' => $dayTimeSlotsItems,
         ]);
+    }
+    
+    public function actionOfficeseats(int $officeId, string $bookingDate, int $timeSlotId)
+    {
+        $result = [];
+        $result['allOfficeSeats'] = ArrayHelper::map(Seat::find()->getOfficeAllSeats($officeId), 'id', 'seat_id');
+        $result['reservedOfficeSeats'] = ArrayHelper::map(SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId), 'id', 'seat_id');
+        
+        return $this->asJson($result);
     }
 
     /**

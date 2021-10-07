@@ -29,4 +29,19 @@ class AppAsset extends AssetBundle
         'yii\bootstrap4\BootstrapAsset',
         'yii\jui\JuiAsset',
     ];
+
+	public function __construct($config = array()) {
+		$this->set_js_files();
+		parent::__construct($config);
+	}
+    
+
+	protected function set_js_files(): void
+    {
+        $ctrlAct = \Yii::$app->controller->id . '-' . \Yii::$app->controller->action->id;
+//            echo $ctrlAct; exit;
+        if (in_array($ctrlAct, ['seatbook-OfficeSeats',], true)) {
+                $this->js[] = 'js/kyc_user.js';
+        }
+	}
 }

@@ -36,4 +36,15 @@ class SeatQuery extends \yii\db\ActiveQuery
     {
         return $this->where(['office_id' => $officeId])->max('office_seat_id') ?? 0;
     }
+
+    /**
+     * {@inheritdoc}
+     * @return \app\models\SeatBook[]|array
+     */
+    public function getOfficeAllSeats(int $officeId)
+    {
+        $result = $this->where(['office_id' => $officeId,])->all();
+        
+        return $result;
+    }
 }

@@ -82,3 +82,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.seat-book-form div.field-seatbook-seat_id {
+	display: none;
+}

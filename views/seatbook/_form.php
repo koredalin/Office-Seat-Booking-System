@@ -25,7 +25,7 @@ use app\models\SeatBook;
         <?php
         echo DatePicker::widget([
             'model' => $model,
-            'attribute' => 'bookDate',
+            'attribute' => 'booking_date',
             //'language' => 'ru',
             'dateFormat' => 'yyyy-MM-dd',
             'options' => ['class' => 'form-control',],
@@ -39,20 +39,12 @@ use app\models\SeatBook;
     </div>
     
     <?php
-    echo $form->field($model, 'reservationTimeType')->radioList([SeatBook::PART_DAY_RESERVATION => 'Part day reservation', SeatBook::WHOLE_DAY_RESERVATION => 'Whole day reservation',], ['unselect' => '']);
+    echo $form->field($model, 'reservationDayTimeSlot')->radioList($dayTimeSlotsItems, ['unselect' => '']);
     
-    $checkboxItems = [];
-    foreach (SeatBook::RESERVATION_DAY_TIME_SLOTS as $slot => $slotInfo) {
-        $checkboxItems[$slot] = trim($slotInfo['label'] ?? '');
-    }
-    echo $form->field($model, 'reservationDayTimeSlots')->checkboxList($checkboxItems, []);
+    echo $form->field($model, 'seat_id')->radioList([], ['unselect' => '']);
     ?>
 
-    <?= $form->field($model, 'seat_id')->textInput() ?>
-
-    <?= $form->field($model, 'start_time')->textInput() ?>
-
-    <?= $form->field($model, 'end_time')->textInput() ?>
+    <?php // $form->field($model, 'seat_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
