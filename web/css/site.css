@@ -83,6 +83,10 @@ a.desc:after {
     outline: none;
 }
 
+.help-block {
+	color: red;
+}
+
 .seat-book-form div.field-seatbook-seat_id {
 	display: none;
 }

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('#seatbook-officeid, #seatbook-booking_date, input[name="SeatBook[reservationDayTimeSlot]"]').on('change', function () {
+	$('#seatbook-officeid, #seatbook-booking_date, input[name="SeatBook[seat_book_time_slot_id]"]').on('change', function () {
 		collectOfficeSeats();
 	});
 });
@@ -7,7 +7,7 @@ $(document).ready(function () {
 var collectOfficeSeats = function() {
 	let officeId = ($('#seatbook-officeid').find(':selected').val() || '0').trim();
 	let bookingDate = ($('#seatbook-booking_date').val() || '').trim();
-	let timeSlotId = ($('input[name="SeatBook[reservationDayTimeSlot]"]:checked').val() || '0').trim();
+	let timeSlotId = ($('input[name="SeatBook[seat_book_time_slot_id]"]:checked').val() || '0').trim();
 	// Not all data collected.
 	if (officeId === '' || officeId === '0'
 		|| bookingDate === ''
@@ -23,11 +23,31 @@ var collectOfficeSeats = function() {
 			bookingDate: bookingDate,
 			timeSlotId: timeSlotId
 		},
-		success: function (result) {
-			console.log(result);
+		success: function (seats) {
+			visualizeOfficeSeats(seats);
 		},
 		error: function (exception) {
 			alert(exception);
 		}
 	});
+
+	let visualizeOfficeSeats = function(seats) {
+		let parsedSeats = JSON.parse(seats);
+		let resultHtml = '';
+		let allSeats = parsedSeats.allOfficeSeats;
+		let alreadyBookedSeats = parsedSeats.reservedOfficeSeats;
+		$('div.field-seatbook-seat_id').show();
+		let wholeWorkingDayBookId = 10;
+		$.each(allSeats, function (seatId, officeSeatId) {
+			let disabledInput = (jQuery.inArray(parseInt(seatId || 0), alreadyBookedSeats) > -1
+				|| jQuery.inArray(wholeWorkingDayBookId, alreadyBookedSeats) > -1)
+				? ' disabled'
+				: '';
+			resultHtml += '<label>';
+			resultHtml += '<input type="radio" name="SeatBook[seat_id]" value="'+seatId+'"'+disabledInput+'>';
+			resultHtml += officeSeatId;
+			resultHtml += '</label>';
+		});
+		$('#seatbook-seat_id').html(resultHtml);
+	};
 };

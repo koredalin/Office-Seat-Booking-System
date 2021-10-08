@@ -17,8 +17,8 @@ class SeatBookSearch extends SeatBook
     public function rules()
     {
         return [
-            [['id', 'employee_id', 'seat_id'], 'integer'],
-            [['start_time', 'end_time', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'employee_id', 'seat_id', 'seat_book_time_slot_id'], 'integer'],
+            [['booking_date', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -60,9 +60,9 @@ class SeatBookSearch extends SeatBook
         $query->andFilterWhere([
             'id' => $this->id,
             'employee_id' => $this->employee_id,
+            'booking_date' => $this->booking_date,
             'seat_id' => $this->seat_id,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
+            'seat_book_time_slot_id' => $this->seat_book_time_slot_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

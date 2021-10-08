@@ -74,10 +74,11 @@ class SeatbookController extends Controller
     public function actionCreate()
     {
         $model = new SeatBook();
+        $model->created_at = DtManager::nowStr();
+        $model->updated_at = DtManager::nowStr();
 
         if ($this->request->isPost) {
-            $service = new SeatBookService();
-            if ($service->book($this->request->post())) {
+            if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

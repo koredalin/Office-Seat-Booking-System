@@ -12,11 +12,15 @@ use app\models\SeatBookTimeSlot;
  *
  * @property int $id
  * @property int $employee_id
+ * @property string $booking_date
  * @property int $seat_id
- * @property int $booking_date
  * @property int $seat_book_time_slot_id
  * @property string $created_at
  * @property string $updated_at
+ *
+ * @property Employees $employee
+ * @property Seats $seat
+ * @property SeatsBookTimeSlots $seatBookTimeSlot
  */
 class SeatBook extends \yii\db\ActiveRecord
 {
@@ -24,7 +28,7 @@ class SeatBook extends \yii\db\ActiveRecord
 //    public string $bookDate = '';
 //    const PART_DAY_BOOK = 'part_day';
 //    const WHOLE_DAY_BOOK = 'whole_day';
-    public int $reservationDayTimeSlot = 0;
+//    public int $reservationDayTimeSlot = 0;
     
     /**
      * {@inheritdoc}
@@ -40,9 +44,13 @@ class SeatBook extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['employee_id', 'seat_id', 'booking_date', 'seat_book_time_slot_id', 'created_at', 'updated_at'], 'required'],
-            [['employee_id', 'officeId', 'reservationDayTimeSlot', 'seat_id', 'seat_book_time_slot_id',], 'integer'],
+            [['employee_id', 'booking_date', 'seat_id', 'seat_book_time_slot_id', 'created_at', 'updated_at'], 'required'],
+            [['employee_id', 'officeId', 'seat_id', 'seat_book_time_slot_id'], 'integer'],
             [['booking_date', 'created_at', 'updated_at'], 'safe'],
+            [['seat_id', 'seat_book_time_slot_id'], 'unique', 'targetAttribute' => ['seat_id', 'seat_book_time_slot_id']],
+            [['employee_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_id' => 'id']],
+            [['seat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Seat::className(), 'targetAttribute' => ['seat_id' => 'id']],
+            [['seat_book_time_slot_id'], 'exist', 'skipOnError' => true, 'targetClass' => SeatBookTimeSlot::className(), 'targetAttribute' => ['seat_book_time_slot_id' => 'id']],
         ];
     }
 
@@ -54,8 +62,8 @@ class SeatBook extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'employee_id' => Yii::t('app', 'Employee ID'),
-            'seat_id' => Yii::t('app', 'Seat ID'),
             'booking_date' => Yii::t('app', 'Booking Date'),
+            'seat_id' => Yii::t('app', 'Seat ID'),
             'seat_book_time_slot_id' => Yii::t('app', 'Seat Book Time Slot ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

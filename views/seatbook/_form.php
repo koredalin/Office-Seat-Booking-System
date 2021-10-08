@@ -41,7 +41,7 @@ use app\models\SeatBook;
     </div>
     
     <?php
-    echo $form->field($model, 'reservationDayTimeSlot')->radioList($dayTimeSlotsItems, ['unselect' => '']);
+    echo $form->field($model, 'seat_book_time_slot_id')->radioList($dayTimeSlotsItems, ['unselect' => '']);
     
     echo $form->field($model, 'seat_id')->radioList([], ['unselect' => '']);
     ?>
