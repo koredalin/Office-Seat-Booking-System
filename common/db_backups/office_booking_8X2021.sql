@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2021 at 05:26 PM
+-- Generation Time: Oct 08, 2021 at 06:41 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -115,7 +115,12 @@ INSERT INTO `seats_book` (`id`, `employee_id`, `booking_date`, `seat_id`, `seat_
 (5, 1, '2021-10-08', 9, 1, '2021-10-08 14:20:16', '2021-10-08 14:20:16'),
 (6, 2, '2021-10-08', 9, 3, '2021-10-08 14:20:58', '2021-10-08 14:20:58'),
 (7, 3, '2021-10-08', 11, 10, '2021-10-08 14:32:26', '2021-10-08 14:32:26'),
-(8, 1, '2021-10-08', 9, 5, '2021-10-08 14:38:46', '2021-10-08 14:38:46');
+(8, 1, '2021-10-08', 9, 5, '2021-10-08 14:38:46', '2021-10-08 14:38:46'),
+(9, 3, '2021-10-13', 9, 2, '2021-10-08 18:14:48', '2021-10-08 18:14:48'),
+(10, 2, '2021-10-08', 9, 2, '2021-10-08 18:39:54', '2021-10-08 18:39:55'),
+(11, 2, '2021-10-09', 9, 2, '2021-10-08 18:40:10', '2021-10-08 18:40:10'),
+(12, 2, '2021-10-09', 11, 2, '2021-10-08 18:40:27', '2021-10-08 18:40:28'),
+(13, 1, '2021-10-09', 11, 1, '2021-10-08 18:40:46', '2021-10-08 18:40:46');
 
 -- --------------------------------------------------------
 
@@ -176,7 +181,7 @@ ALTER TABLE `seats`
 --
 ALTER TABLE `seats_book`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `seat_id_2` (`seat_id`,`seat_book_time_slot_id`) USING BTREE,
+  ADD UNIQUE KEY `seat_id_2` (`booking_date`,`seat_id`,`seat_book_time_slot_id`) USING BTREE,
   ADD KEY `seat_id` (`seat_id`),
   ADD KEY `employee_id` (`employee_id`),
   ADD KEY `seats_book_time_slots_id` (`seat_book_time_slot_id`);
@@ -213,7 +218,7 @@ ALTER TABLE `seats`
 -- AUTO_INCREMENT for table `seats_book`
 --
 ALTER TABLE `seats_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `seats_book_time_slots`

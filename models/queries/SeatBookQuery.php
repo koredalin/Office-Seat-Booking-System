@@ -49,6 +49,7 @@ class SeatBookQuery extends \yii\db\ActiveQuery
                 'seat_book_time_slot_id' => $timeSlotIds
             ])
             ->all();
+//        echo $this->createCommand()->getRawSql(); exit;
 //        print_r($result); exit;
         return $result;
     }

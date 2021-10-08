@@ -90,3 +90,7 @@ a.desc:after {
 .seat-book-form div.field-seatbook-seat_id {
 	display: none;
 }
+
+#no_office_seats {
+	display: none;
+}

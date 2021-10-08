@@ -47,7 +47,7 @@ class SeatBook extends \yii\db\ActiveRecord
             [['employee_id', 'booking_date', 'seat_id', 'seat_book_time_slot_id', 'created_at', 'updated_at'], 'required'],
             [['employee_id', 'officeId', 'seat_id', 'seat_book_time_slot_id'], 'integer'],
             [['booking_date', 'created_at', 'updated_at'], 'safe'],
-            [['seat_id', 'seat_book_time_slot_id'], 'unique', 'targetAttribute' => ['seat_id', 'seat_book_time_slot_id']],
+            [['booking_date', 'seat_id', 'seat_book_time_slot_id'], 'unique', 'targetAttribute' => ['booking_date', 'seat_id', 'seat_book_time_slot_id']],
             [['employee_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_id' => 'id']],
             [['seat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Seat::className(), 'targetAttribute' => ['seat_id' => 'id']],
             [['seat_book_time_slot_id'], 'exist', 'skipOnError' => true, 'targetClass' => SeatBookTimeSlot::className(), 'targetAttribute' => ['seat_book_time_slot_id' => 'id']],

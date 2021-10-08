@@ -45,6 +45,7 @@ use app\models\SeatBook;
     
     echo $form->field($model, 'seat_id')->radioList([], ['unselect' => '']);
     ?>
+    <div id="no_office_seats" class="help-block">The office has no seats!</div>
 
     <?php // $form->field($model, 'seat_id')->textInput() ?>
 

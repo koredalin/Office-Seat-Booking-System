@@ -34,8 +34,14 @@ var collectOfficeSeats = function() {
 	let visualizeOfficeSeats = function(seats) {
 		let parsedSeats = JSON.parse(seats);
 		let resultHtml = '';
-		let allSeats = parsedSeats.allOfficeSeats;
-		let alreadyBookedSeats = parsedSeats.reservedOfficeSeats;
+		let allSeats = parsedSeats.allOfficeSeats || {};
+		if ((Object.keys(allSeats).length || 0) == 0) {
+			$('#no_office_seats').show();
+			return;
+		} else {
+			$('#no_office_seats').hide();
+		}
+		let alreadyBookedSeats = parsedSeats.reservedOfficeSeats || [];
 		$('div.field-seatbook-seat_id').show();
 		let wholeWorkingDayBookId = 10;
 		$.each(allSeats, function (seatId, officeSeatId) {
