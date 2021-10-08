@@ -11,6 +11,9 @@ use app\models\SeatBook;
  */
 class SeatBookSearch extends SeatBook
 {
+    public string $employeeEmail = '';
+    public string $officeName = '';
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +21,7 @@ class SeatBookSearch extends SeatBook
     {
         return [
             [['id', 'employee_id', 'seat_id', 'seat_book_time_slot_id'], 'integer'],
-            [['booking_date', 'created_at', 'updated_at'], 'safe'],
+            [['employeeEmail', 'officeName', 'booking_date', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -55,6 +58,11 @@ class SeatBookSearch extends SeatBook
             // $query->where('0=1');
             return $dataProvider;
         }
+        
+        $query->innerJoin('employees', 'seats_book.employee_id = employees.id');
+        
+        $query->innerJoin('seats', 'seats_book.seat_id = seats.id');
+        $query->innerJoin('offices', 'seats.office_id = offices.id');
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -66,6 +74,8 @@ class SeatBookSearch extends SeatBook
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+        $query->andFilterWhere(['like', 'employees.email', $this->employeeEmail]);
+        $query->andFilterWhere(['like', 'offices.office_name', $this->officeName]);
 
         return $dataProvider;
     }

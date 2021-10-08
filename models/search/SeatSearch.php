@@ -11,6 +11,8 @@ use app\models\Seat;
  */
 class SeatSearch extends Seat
 {
+    public string $officeName = '';
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +20,7 @@ class SeatSearch extends Seat
     {
         return [
             [['id', 'office_id', 'office_seat_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['officeName', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -47,14 +49,16 @@ class SeatSearch extends Seat
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        
         $this->load($params);
-
+        
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
+        
+        $query->innerJoin('offices', 'seats.office_id = offices.id');
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -64,6 +68,7 @@ class SeatSearch extends Seat
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+        $query->andFilterWhere(['like', 'offices.office_name', $this->officeName]);
 
         return $dataProvider;
     }

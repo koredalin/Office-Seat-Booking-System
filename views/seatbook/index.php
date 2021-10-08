@@ -19,7 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,10 +27,32 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'employee_id',
+            [
+                'label' => 'Employee Email',
+                'attribute' => 'employeeEmail',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return $data->employee->email;
+                },
+            ],
             'booking_date',
+            [
+                'label' => 'Office Name',
+                'attribute' => 'officeName',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return $data->seat->office->office_name;
+                },
+            ],
             'seat_id',
-            'seat_book_time_slot_id:datetime',
+            [
+                'label' => 'Seat Book Time Slot',
+                'attribute' => 'seatBookTimeSlotLabel',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return $data->seatBookTimeSlot->label;
+                },
+            ],
             'created_at',
             'updated_at',
 

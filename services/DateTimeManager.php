@@ -20,4 +20,14 @@ class DateTimeManager
     {
         return self::now()->format('Y-m-d H:i:s');
     }
+    
+    /**
+     * Returns current date, time as scalar expression.
+     */
+    public static function nowDb(): string
+    {
+        $expression = new Expression('NOW()');
+
+        return (new \yii\db\Query)->select($expression)->scalar();
+    }
 }

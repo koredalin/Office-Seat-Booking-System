@@ -19,7 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,8 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'label' => 'Office Name',
-                'attribute' => 'office_name',
-//                'filter' => Html::activeInput('text', $searchModel, 'office_name', ['class' => 'form-control']),
+                'attribute' => 'officeName',
                 'format' => 'raw',
                 'value' => function ($data) {
                     return $data->office->office_name;
