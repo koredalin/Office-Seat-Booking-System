@@ -101,9 +101,19 @@ class SeatController extends Controller
      */
     public function actionUpdate($id)
     {
-        // Forbidden functionality
+        $model = $this->findModel($id);
+        $model->updated_at = DtManager::nowStr();
 
-        return $this->redirect(['index']);
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        $offices = ArrayHelper::map(Office::find()->all(), 'id', 'office_name');
+
+        return $this->render('update', [
+             'model' => $model,
+             'offices' => $offices,
+        ]);
     }
 
     /**

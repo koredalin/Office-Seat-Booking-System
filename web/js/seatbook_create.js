@@ -1,19 +1,20 @@
 $(document).ready(function () {
-
 	$('#seatbook-officeid, #seatbook-booking_date, input[name="SeatBook[reservationDayTimeSlot]"]').on('change', function () {
 		collectOfficeSeats();
 	});
-//	$('#seatbook-booking_date').bind('change', function () {
-//		collectOfficeSeats();
-//	});
 });
 
 var collectOfficeSeats = function() {
-	console.log('dfasadf');
+	let officeId = ($('#seatbook-officeid').find(':selected').val() || '0').trim();
+	let bookingDate = ($('#seatbook-booking_date').val() || '').trim();
+	let timeSlotId = ($('input[name="SeatBook[reservationDayTimeSlot]"]:checked').val() || '0').trim();
+	// Not all data collected.
+	if (officeId === '' || officeId === '0'
+		|| bookingDate === ''
+		|| timeSlotId === '' || timeSlotId === '0') {
+		return;
+	}
 	
-	let officeId = $('#seatbook-officeid').find(':selected').val();
-	let bookingDate = $('#seatbook-booking_date').val();
-	let timeSlotId = $('input[name="SeatBook[reservationDayTimeSlot]"]:checked').val();
 	$.ajax({
 		type: "GET",
 		url: officeSeatsUrl,

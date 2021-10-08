@@ -12,7 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     
-    <?php echo $form->field($model, 'office_id')->dropDownList($offices, ['prompt' => 'Choose an office']); ?>
+    <?php
+    echo $form->field($model, 'office_id')->dropDownList($offices, ['prompt' => 'Choose an office']);
+    
+    $ctrlAct = \Yii::$app->controller->id . '-' . \Yii::$app->controller->action->id;
+    if (in_array($ctrlAct, ['seat-update',], true)) {
+        echo $form->field($model, 'office_seat_id')->textInput(['maxlength' => true]);
+    }
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
