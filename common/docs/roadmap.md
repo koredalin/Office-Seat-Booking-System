@@ -28,7 +28,7 @@
 
 ### Application core functionality implementation
 
-- [x] Remaking "/seatbook/create" url-action to meet the task requirements.
+- [x] Remaking `/seatbook/create` url-action to meet the task requirements.
 	An office-seat booking is add with choosing an employee, an office, a booking date, a time slot from the day. The last thing that the user should choose is a seat in the office (Implemented with an ajax request to the backend.).
 
 ### User readable and filtered data into the view indexes
