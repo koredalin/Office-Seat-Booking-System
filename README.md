@@ -40,9 +40,23 @@ DOCUMENTATION
 TESTING
 -------
 
-You can run the tests with `php vendor/bin/codecept run unit,functional` command into the project folder.
+Steps to be reproduced to start the tests.
+
+1. Create a database with name `office_booking_test`.
+2. Set office_booking DB user to work with the database.
+3. You can run the tests with `php vendor/bin/codecept run unit,functional` command into the project folder.
 
 Provided tests for:
 
 - `employees` table unit tests.
 - `seats_book` table functional tests.
+
+**NOTES:**
+- Yii won't create the database for you, this has to be done manually before you can access it.
+- Check and edit the other files in the `config/` directory to customize your application as required.
+- Don't make tests on production environment. Read Yii2 documentation to avoid that.
+	- Set a production environment for the live server.
+	- Do not make additional database.
+	- Do not upload tests folder.
+	- Do not upload git folders. They are using too much data storage.
+	- And.. - So on...
