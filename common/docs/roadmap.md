@@ -7,7 +7,7 @@
 - [x] Some starting point database backup sql. Migrations could be added on later stage.
 	[SQL dump](https://github.com/koredalin/Office-Seat-Booking-System/blob/master/common/db_backups/office_booking_8X2021.sql)
 - [x] The database scheme as an image.
-	[DB Scheme image]()
+	[DB Scheme image](https://github.com/koredalin/Office-Seat-Booking-System/blob/master/common/db_backups/DB_Scheme_8X2021.png)
 
 ## Yii2 framework deployment
 
