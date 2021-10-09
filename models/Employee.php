@@ -36,6 +36,7 @@ class Employee extends \yii\db\ActiveRecord
             [['first_name', 'last_name'], 'string', 'max' => 60],
             [['payroll_number'], 'string', 'max' => 40],
             [['email'], 'string', 'max' => 255],
+            ['email', 'email',],
         ];
     }
 

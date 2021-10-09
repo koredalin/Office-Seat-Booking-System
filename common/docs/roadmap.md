@@ -45,7 +45,7 @@ The default CRUD is made with [Yii2 Gii](https://www.yiiframework.com/doc/guide/
 ### CodeSeption Testing
 
 - [ ] An Unit test.
-- [ ] An functional test.
+- [ ] A functional test.
 
 ### Good practices future upgrades
 
