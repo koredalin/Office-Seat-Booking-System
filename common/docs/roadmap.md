@@ -38,6 +38,10 @@ The default CRUD is made with [Yii2 Gii](https://www.yiiframework.com/doc/guide/
 - [x] Seat view. Url: `/seat/index`.
 - [x] SeatBook view. Url: `/seatbook/index`.
 
+### Common
+
+- [x] Adding git tags through the development.
+
 ### CodeSeption Testing
 
 - [x] An Unit test.
