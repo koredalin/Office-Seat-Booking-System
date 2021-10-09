@@ -16,6 +16,8 @@
 
 ### CRUD
 
+The default CRUD is made with [Yii2 Gii](https://www.yiiframework.com/doc/guide/2.0/en/start-gii) generator.
+
 - [x] Employee model.
 - [x] Office model.
 - [x] Seat model.
@@ -45,3 +47,4 @@
 
 - [x] Database migrations.
 - [x] Using db keys (A string unique representation of a db table row.) instead of the default db ids.
+- [x] Eventually.. - Dependency injection for access to the Query files. Not supported by the default Gii generator. This would be a better option if the system migrates to Yii3. :-)

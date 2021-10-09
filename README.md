@@ -3,7 +3,7 @@
     <br>
 </p>
 
-Office-Seat Booking System is an web app for booking n seats in m offices.
+Office-Seat Booking System is an web app for booking `n` seats in `m` offices.
 
 The offices have names and seats only ids in the office.
 
