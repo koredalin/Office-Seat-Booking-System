@@ -23,25 +23,19 @@ echo '</script>'.PHP_EOL;
     <?php
     echo $form->field($model, 'employee_id')->dropDownList($employees, ['prompt' => 'Choose an employee']);
     
-    echo $form->field($model, 'officeId')->dropDownList($offices, ['prompt' => 'Choose an office']);
+    echo $form->field($model, 'officeId')->dropDownList($offices, ['prompt' => 'Choose an office',]);
+        
+    echo $form->field($model, 'booking_date')->widget(DatePicker::classname(), [
+        'dateFormat' => 'yyyy-MM-dd',
+        'options' => ['class' => 'form-control',],
+        'clientOptions' => [
+            'minDate' => 'today',
+            'maxDate' => '+1m',
+            'autoclose' => true,
+//            'format' => 'yyyy-MM-dd'
+        ],
+    ]);
     ?>
-    
-    <div class="form-group field-seatbook-bookDate">
-        <label>Book Date</label>
-        <?php
-        echo DatePicker::widget([
-            'model' => $model,
-            'attribute' => 'booking_date',
-            //'language' => 'ru',
-            'dateFormat' => 'yyyy-MM-dd',
-            'options' => ['class' => 'form-control',],
-            'clientOptions' => [
-                'minDate' => 'today',
-                'maxDate' => '+1m',
-            ],
-        ]);
-        ?>
-    </div>
     
     <?php
     echo $form->field($model, 'seat_book_time_slot_id')->radioList($dayTimeSlotsItems, ['unselect' => '']);

@@ -24,7 +24,11 @@ use app\models\SeatBookTimeSlot;
  */
 class SeatBook extends \yii\db\ActiveRecord
 {
-    public int $officeId = 0;
+    /**
+     * 
+     * @var int|null|string An empty string, null or integer.
+     */
+    public $officeId = 0;
     
     /**
      * {@inheritdoc}
@@ -40,9 +44,11 @@ class SeatBook extends \yii\db\ActiveRecord
     public function rules(): array
     {
         return [
-            [['employee_id', 'booking_date', 'seat_id', 'seat_book_time_slot_id', 'created_at', 'updated_at'], 'required'],
+            [['employee_id', 'officeId', 'booking_date', 'seat_id', 'seat_book_time_slot_id', 'created_at', 'updated_at'], 'required'],
             [['employee_id', 'officeId', 'seat_id', 'seat_book_time_slot_id'], 'integer'],
             [['booking_date', 'created_at', 'updated_at'], 'safe'],
+//            ['booking_date', 'date',],
+            ['booking_date', 'date', 'format' => 'yyyy-MM-dd',],
             [['booking_date', 'seat_id', 'seat_book_time_slot_id'], 'unique', 'targetAttribute' => ['booking_date', 'seat_id', 'seat_book_time_slot_id']],
             [['employee_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_id' => 'id']],
             [['seat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Seat::className(), 'targetAttribute' => ['seat_id' => 'id']],

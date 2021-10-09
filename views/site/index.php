@@ -13,7 +13,7 @@ $this->title = 'Office-Seat Booking System';
 
         <p class="lead">Welcome to our booking system.</p>
         
-        <?php echo Html::a('&laquo; Bookings &raquo;', ['/office/index'], ['class' => 'btn btn-lg btn-success']); ?>
+        <?php echo Html::a('&laquo; Bookings &raquo;', ['/seatbook/index'], ['class' => 'btn btn-lg btn-success']); ?>
     </div>
 
     <div class="body-content">

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	collectOfficeSeats();
+	
 	$('#seatbook-officeid, #seatbook-booking_date, input[name="SeatBook[seat_book_time_slot_id]"]').on('change', function () {
 		collectOfficeSeats();
 	});
