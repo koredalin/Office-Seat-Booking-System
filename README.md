@@ -15,6 +15,7 @@ Used Technologies
 - MySQL
 - jQuery
 - jQuery UI
+- CodeSeption testing framework
 
 
 INSTALLATION and CONFIGURATION
