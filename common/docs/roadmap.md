@@ -44,8 +44,10 @@ The default CRUD is made with [Yii2 Gii](https://www.yiiframework.com/doc/guide/
 
 ### CodeSeption Testing
 
-- [ ] An Unit test.
-- [ ] A functional test.
+You can run the tests with `php vendor/bin/codecept run unit,functional` command into project folder.
+
+- [x] `employees` table unit tests.
+- [x] `seats_book` table functional tests.
 
 ### Good practices future upgrades
 
