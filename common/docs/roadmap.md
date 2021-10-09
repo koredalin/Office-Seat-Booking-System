@@ -6,7 +6,7 @@
 - [x] Adding data to nomenclature table `seat_book_time_slot`.
 - [x] Some starting point database backup sql. Migrations could be added on later stage.
 	[SQL dump](https://github.com/koredalin/Office-Seat-Booking-System/blob/master/common/db_backups/office_booking_8X2021.sql)
-- [] The database scheme as an image.
+- [x] The database scheme as an image.
 	[DB Scheme image]()
 
 ## Yii2 framework deployment
