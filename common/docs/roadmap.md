@@ -33,7 +33,7 @@
 
 ### User readable and filtered data into the view indexes
 
-- [x] Seat view. Url: `/seat/index`".
+- [x] Seat view. Url: `/seat/index`.
 - [x] SeatBook view. Url: `/seatbook/index`.
 
 ### CodeSeption Testing
