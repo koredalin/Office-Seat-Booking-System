@@ -17,7 +17,7 @@ class Office extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'offices';
     }
@@ -25,7 +25,7 @@ class Office extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['office_name', 'created_at', 'updated_at'], 'required'],
@@ -36,7 +36,7 @@ class Office extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -50,7 +50,7 @@ class Office extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return \app\models\queries\OfficeQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): \app\models\queries\OfficeQuery
     {
         return new \app\models\queries\OfficeQuery(get_called_class());
     }

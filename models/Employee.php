@@ -20,7 +20,7 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'employees';
     }
@@ -28,7 +28,7 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['first_name', 'last_name', 'payroll_number', 'email', 'created_at', 'updated_at'], 'required'],
@@ -42,7 +42,7 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -59,7 +59,7 @@ class Employee extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return \app\models\queries\EmployeeQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): \app\models\queries\EmployeeQuery
     {
         return new \app\models\queries\EmployeeQuery(get_called_class());
     }

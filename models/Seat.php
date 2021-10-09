@@ -20,7 +20,7 @@ class Seat extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'seats';
     }
@@ -28,7 +28,7 @@ class Seat extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['office_id', 'office_seat_id', 'created_at', 'updated_at'], 'required'],
@@ -42,7 +42,7 @@ class Seat extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -64,11 +64,11 @@ class Seat extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[SeatsBook]].
+     * Gets query for [[SeatBook]].
      *
      * @return \yii\db\ActiveQuery|\app\models\queries\SeatBookQuery
      */
-    public function getSeatsBooks()
+    public function getSeatsBook()
     {
         return $this->hasMany(SeatBook::className(), ['seat_id' => 'id']);
     }
@@ -77,7 +77,7 @@ class Seat extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return \app\models\queries\SeatQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): \app\models\queries\SeatQuery
     {
         return new \app\models\queries\SeatQuery(get_called_class());
     }

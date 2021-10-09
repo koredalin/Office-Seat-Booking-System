@@ -18,22 +18,18 @@ use app\models\SeatBookTimeSlot;
  * @property string $created_at
  * @property string $updated_at
  *
- * @property Employees $employee
- * @property Seats $seat
- * @property SeatsBookTimeSlots $seatBookTimeSlot
+ * @property Employee $employee
+ * @property Seat $seat
+ * @property SeatBookTimeSlot $seatBookTimeSlot
  */
 class SeatBook extends \yii\db\ActiveRecord
 {
     public int $officeId = 0;
-//    public string $bookDate = '';
-//    const PART_DAY_BOOK = 'part_day';
-//    const WHOLE_DAY_BOOK = 'whole_day';
-//    public int $reservationDayTimeSlot = 0;
     
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'seats_book';
     }
@@ -41,7 +37,7 @@ class SeatBook extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['employee_id', 'booking_date', 'seat_id', 'seat_book_time_slot_id', 'created_at', 'updated_at'], 'required'],
@@ -57,7 +53,7 @@ class SeatBook extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -104,7 +100,7 @@ class SeatBook extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return \app\models\queries\SeatBookQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): \app\models\queries\SeatBookQuery
     {
         return new \app\models\queries\SeatBookQuery(get_called_class());
     }

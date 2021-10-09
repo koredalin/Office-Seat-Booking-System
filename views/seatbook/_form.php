@@ -3,14 +3,17 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\jui\DatePicker;
-use app\models\SeatBook;
+use app\models\SeatBookTimeSlot;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\SeatBook */
 /* @var $form yii\widgets\ActiveForm */
 
 
- echo '<script>let officeSeatsUrl = \''.\Yii::$app->getUrlManager()->createUrl('seatbook/officeseats').'\';</script>';
+echo '<script>'.PHP_EOL;
+    echo 'let officeSeatsUrl = \''.\Yii::$app->getUrlManager()->createUrl('seatbook/officeseats').'\';'.PHP_EOL;
+    echo 'let wholeWorkingDayBookId = '.SeatBookTimeSlot::WHOLE_WORKING_DAY_ID.';'.PHP_EOL;
+echo '</script>'.PHP_EOL;
 ?>
 
 <div class="seat-book-form">

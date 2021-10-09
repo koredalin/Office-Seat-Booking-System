@@ -35,15 +35,14 @@ var collectOfficeSeats = function() {
 		let parsedSeats = JSON.parse(seats);
 		let resultHtml = '';
 		let allSeats = parsedSeats.allOfficeSeats || {};
-		if ((Object.keys(allSeats).length || 0) == 0) {
+		if ((Object.keys(allSeats).length || 0) === 0) {
 			$('#no_office_seats').show();
 			return;
 		} else {
 			$('#no_office_seats').hide();
 		}
-		let alreadyBookedSeats = parsedSeats.reservedOfficeSeats || [];
+		let alreadyBookedSeats = parsedSeats.bookedOfficeSeats || [];
 		$('div.field-seatbook-seat_id').show();
-		let wholeWorkingDayBookId = 10;
 		$.each(allSeats, function (seatId, officeSeatId) {
 			let disabledInput = (jQuery.inArray(parseInt(seatId || 0), alreadyBookedSeats) > -1
 				|| jQuery.inArray(wholeWorkingDayBookId, alreadyBookedSeats) > -1)

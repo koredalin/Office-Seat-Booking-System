@@ -23,7 +23,7 @@ class SeatbookController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -97,11 +97,19 @@ class SeatbookController extends Controller
         ]);
     }
     
+    /**
+     * Returns all office seats and already booked office seats.
+     * 
+     * @param int $officeId
+     * @param string $bookingDate
+     * @param int $timeSlotId
+     * @return Response a response that is configured to send `$data` formatted as JSON.
+     */
     public function actionOfficeseats(int $officeId, string $bookingDate, int $timeSlotId)
     {
         $result = [];
         $result['allOfficeSeats'] = ArrayHelper::map(Seat::find()->getOfficeAllSeats($officeId), 'id', 'office_seat_id');
-        $result['reservedOfficeSeats'] = ArrayHelper::getColumn(SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId), 'seat_id');
+        $result['bookedOfficeSeats'] = ArrayHelper::getColumn(SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId), 'seat_id');
         
         return $this->asJson(\json_encode($result));
     }

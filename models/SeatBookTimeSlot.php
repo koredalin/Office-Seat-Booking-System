@@ -13,7 +13,7 @@ use Yii;
  * @property string $start_time
  * @property string $end_time
  *
- * @property SeatsBook[] $seatsBooks
+ * @property SeatBook[] $seatsBook
  */
 class SeatBookTimeSlot extends \yii\db\ActiveRecord
 {
@@ -23,7 +23,7 @@ class SeatBookTimeSlot extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'seats_book_time_slots';
     }
@@ -31,7 +31,7 @@ class SeatBookTimeSlot extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['label', 'time_slot_db_key', 'start_time', 'end_time'], 'required'],
@@ -43,7 +43,7 @@ class SeatBookTimeSlot extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => Yii::t('app', 'ID'),
@@ -54,20 +54,20 @@ class SeatBookTimeSlot extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[SeatsBooks]].
+     * Gets query for [[SeatBook]].
      *
      * @return \yii\db\ActiveQuery|\app\models\queries\SeatsBookQuery
      */
-    public function getSeatsBooks()
+    public function getSeatsBook()
     {
-        return $this->hasMany(SeatsBook::className(), ['seats_book_time_slots_id' => 'id']);
+        return $this->hasMany(SeatBook::className(), ['seats_book_time_slots_id' => 'id']);
     }
 
     /**
      * {@inheritdoc}
      * @return \app\models\queries\SeatBookTimeSlotQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): \app\models\queries\SeatBookTimeSlotQuery
     {
         return new \app\models\queries\SeatBookTimeSlotQuery(get_called_class());
     }

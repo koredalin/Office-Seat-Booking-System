@@ -14,7 +14,7 @@ class OfficeSearch extends Office
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'office_name'], 'integer'],
@@ -25,7 +25,7 @@ class OfficeSearch extends Office
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +38,7 @@ class OfficeSearch extends Office
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $query = Office::find();
 

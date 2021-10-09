@@ -16,7 +16,7 @@ class SeatSearch extends Seat
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'office_id', 'office_seat_id'], 'integer'],
@@ -27,7 +27,7 @@ class SeatSearch extends Seat
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -40,7 +40,7 @@ class SeatSearch extends Seat
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $query = Seat::find();
 
