@@ -65,7 +65,7 @@ class SeatBook extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'employee_id' => Yii::t('app', 'Employee ID'),
             'booking_date' => Yii::t('app', 'Booking Date'),
-            'seat_id' => Yii::t('app', 'Seat ID'),
+            'seat_id' => Yii::t('app', 'Office Seat ID'),
             'seat_book_time_slot_id' => Yii::t('app', 'Seat Book Time Slot ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

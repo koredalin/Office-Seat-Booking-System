@@ -13,6 +13,11 @@ class SeatBookSearch extends SeatBook
 {
     public string $employeeEmail = '';
     public string $officeName = '';
+    /**
+     * 
+     * @var int|null|string An empty string, null or integer.
+     */
+    public $officeSeatId = null;
 
     /**
      * {@inheritdoc}
@@ -20,7 +25,7 @@ class SeatBookSearch extends SeatBook
     public function rules(): array
     {
         return [
-            [['id', 'employee_id', 'seat_id', 'seat_book_time_slot_id'], 'integer'],
+            [['id', 'employee_id', 'seat_id', 'officeSeatId', 'seat_book_time_slot_id'], 'integer'],
             [['employeeEmail', 'officeName', 'booking_date', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -76,6 +81,7 @@ class SeatBookSearch extends SeatBook
         ]);
         $query->andFilterWhere(['like', 'employees.email', $this->employeeEmail]);
         $query->andFilterWhere(['like', 'offices.office_name', $this->officeName]);
+        $query->andFilterWhere(['like', 'seats.office_seat_id', $this->officeSeatId]);
 
         return $dataProvider;
     }

@@ -46,6 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'seat_id',
             [
+                'label' => 'Office Seat ID',
+                'attribute' => 'officeSeatId',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return $data->seat->office_seat_id;
+                },
+            ],
+            [
                 'label' => 'Seat Book Time Slot',
                 'attribute' => 'seatBookTimeSlotLabel',
                 'format' => 'raw',
@@ -61,5 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php Pjax::end(); ?>
+    
+    <p><strong>Note: </strong><i>Seat ID</i> is the id in `<i>seats</i>` table. <i>Office Seat ID</i> is just like the name of a single chair in an office-room.</p>
 
 </div>

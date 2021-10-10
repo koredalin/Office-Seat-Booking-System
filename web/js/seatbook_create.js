@@ -55,6 +55,7 @@ var collectOfficeSeats = function() {
 			resultHtml += officeSeatId;
 			resultHtml += '</label>';
 		});
+	    resultHtml += '<p><strong>Note: </strong><i>Seat ID</i> is the id in `<i>seats</i>` table. <i>Office Seat ID</i> is just like the name of a single chair in an office-room.</p>';
 		$('#seatbook-seat_id').html(resultHtml);
 	};
 };
