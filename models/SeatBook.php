@@ -26,7 +26,7 @@ class SeatBook extends \yii\db\ActiveRecord
 {
     /**
      * 
-     * @var int|null|string An empty string, null or integer.
+     * @var int|null|string An empty string, null or integer. Shows an error message on string input.
      */
     public $officeId = 0;
     
