@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
            'id',
            'employee_id',
-           'booking_date', 
+           'booking_date',
            'seat_id',
            'seat_book_time_slot_id:datetime',
            'created_at',

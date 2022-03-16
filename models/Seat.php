@@ -34,8 +34,9 @@ class Seat extends \yii\db\ActiveRecord
             [['office_id', 'office_seat_id', 'created_at', 'updated_at'], 'required'],
             [['office_id', 'office_seat_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['office_id', 'office_seat_id'], 'unique', 'targetAttribute' => ['office_id', 'office_seat_id']], 
-            [['office_id'], 'exist', 'skipOnError' => true, 'targetClass' => Office::className(), 'targetAttribute' => ['office_id' => 'id']], 
+            [['office_id', 'office_seat_id'], 'unique', 'targetAttribute' => ['office_id', 'office_seat_id']],
+            [['office_id'], 'exist', 'skipOnError' => true, 'targetClass' => Office::className(),
+                'targetAttribute' => ['office_id' => 'id']],
         ];
     }
 

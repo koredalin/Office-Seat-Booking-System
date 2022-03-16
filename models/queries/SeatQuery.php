@@ -31,7 +31,7 @@ class SeatQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
-    
+
     public function getMaxOfficeSeatId(int $officeId): int
     {
         return $this->where(['office_id' => $officeId])->max('office_seat_id') ?? 0;
@@ -44,7 +44,7 @@ class SeatQuery extends \yii\db\ActiveQuery
     public function getOfficeAllSeats(int $officeId)
     {
         $result = $this->where(['office_id' => $officeId,])->all();
-        
+
         return $result;
     }
 }

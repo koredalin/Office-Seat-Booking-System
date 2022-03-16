@@ -83,7 +83,7 @@ class SeatController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-        
+
         $offices = ArrayHelper::map(Office::find()->all(), 'id', 'office_name');
 
         return $this->render('create', [

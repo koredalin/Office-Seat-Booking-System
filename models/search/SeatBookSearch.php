@@ -14,7 +14,7 @@ class SeatBookSearch extends SeatBook
     public string $employeeEmail = '';
     public string $officeName = '';
     /**
-     * 
+     *
      * @var int|null|string An empty string, null or integer.
      */
     public $officeSeatId = null;
@@ -63,9 +63,9 @@ class SeatBookSearch extends SeatBook
             // $query->where('0=1');
             return $dataProvider;
         }
-        
+
         $query->innerJoin('employees', 'seats_book.employee_id = employees.id');
-        
+
         $query->innerJoin('seats', 'seats_book.seat_id = seats.id');
         $query->innerJoin('offices', 'seats.office_id = offices.id');
 

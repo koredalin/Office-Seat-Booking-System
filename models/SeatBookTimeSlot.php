@@ -19,7 +19,7 @@ class SeatBookTimeSlot extends \yii\db\ActiveRecord
 {
     const WHOLE_WORKING_DAY_ID = 10;
     const WHOLE_WORKING_DAY_DB_KEY = 'whole_working_day';
-    
+
     /**
      * {@inheritdoc}
      */

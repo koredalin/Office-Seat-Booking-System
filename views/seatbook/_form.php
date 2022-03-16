@@ -10,10 +10,10 @@ use app\models\SeatBookTimeSlot;
 /* @var $form yii\widgets\ActiveForm */
 
 
-echo '<script>'.PHP_EOL;
-    echo 'let officeSeatsUrl = \''.\Yii::$app->getUrlManager()->createUrl('seatbook/officeseats').'\';'.PHP_EOL;
-    echo 'let wholeWorkingDayBookId = '.SeatBookTimeSlot::WHOLE_WORKING_DAY_ID.';'.PHP_EOL;
-echo '</script>'.PHP_EOL;
+echo '<script>' . PHP_EOL;
+    echo 'let officeSeatsUrl = \'' . \Yii::$app->getUrlManager()->createUrl('seatbook/officeseats') . '\';' . PHP_EOL;
+    echo 'let wholeWorkingDayBookId = ' . SeatBookTimeSlot::WHOLE_WORKING_DAY_ID . ';' . PHP_EOL;
+echo '</script>' . PHP_EOL;
 ?>
 
 <div class="seat-book-form">
@@ -22,9 +22,9 @@ echo '</script>'.PHP_EOL;
     
     <?php
     echo $form->field($model, 'employee_id')->dropDownList($employees, ['prompt' => 'Choose an employee']);
-    
+
     echo $form->field($model, 'officeId')->dropDownList($offices, ['prompt' => 'Choose an office',]);
-        
+
     echo $form->field($model, 'booking_date')->widget(DatePicker::classname(), [
         'dateFormat' => 'yyyy-MM-dd',
         'options' => ['class' => 'form-control',],
@@ -39,7 +39,7 @@ echo '</script>'.PHP_EOL;
     
     <?php
     echo $form->field($model, 'seat_book_time_slot_id')->radioList($dayTimeSlotsItems, ['unselect' => '']);
-    
+
     echo $form->field($model, 'seat_id')->radioList([], ['unselect' => '']);
     ?>
     <div id="no_office_seats" class="help-block">The office has no seats!</div>

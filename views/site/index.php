@@ -24,7 +24,11 @@ $this->title = 'Office-Seat Booking System';
 
                 <p>Employees review.</p>
 
-                <?php echo Html::a('Employees &raquo;', ['/employee/index'], ['class' => 'btn btn-outline-secondary']); ?>
+                <?php echo Html::a(
+                    'Employees &raquo;',
+                    ['/employee/index'],
+                    ['class' => 'btn btn-outline-secondary']
+                ); ?>
             </div>
             <div class="col-lg-4">
                 <h2>Offices</h2>
@@ -38,7 +42,11 @@ $this->title = 'Office-Seat Booking System';
 
                 <p>Seats review.</p>
 
-                <?php echo Html::a('Seats &raquo;', ['/seat/index'], ['class' => 'btn btn-outline-secondary center-hor']); ?>
+                <?php echo Html::a(
+                    'Seats &raquo;',
+                    ['/seat/index'],
+                    ['class' => 'btn btn-outline-secondary center-hor']
+                ); ?>
             </div>
         </div>
 

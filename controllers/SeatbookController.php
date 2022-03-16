@@ -13,7 +13,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\services\DateTimeManager as DtManager;
-use app\services\SeatBookService;
 
 /**
  * SeatbookController implements the CRUD actions for SeatBook model.
@@ -84,7 +83,7 @@ class SeatbookController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-        
+
         $employees = ArrayHelper::map(Employee::find()->all(), 'id', 'email');
         $offices = ArrayHelper::map(Office::find()->all(), 'id', 'office_name');
         $dayTimeSlotsItems = ArrayHelper::map(SeatBookTimeSlot::find()->all(), 'id', 'label');
@@ -96,10 +95,10 @@ class SeatbookController extends Controller
             'dayTimeSlotsItems' => $dayTimeSlotsItems,
         ]);
     }
-    
+
     /**
      * Returns all office seats and already booked office seats.
-     * 
+     *
      * @param int $officeId
      * @param string $bookingDate
      * @param int $timeSlotId
@@ -108,9 +107,16 @@ class SeatbookController extends Controller
     public function actionOfficeseats(int $officeId, string $bookingDate, int $timeSlotId)
     {
         $result = [];
-        $result['allOfficeSeats'] = ArrayHelper::map(Seat::find()->getOfficeAllSeats($officeId), 'id', 'office_seat_id');
-        $result['bookedOfficeSeats'] = ArrayHelper::getColumn(SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId), 'seat_id');
-        
+        $result['allOfficeSeats'] = ArrayHelper::map(
+            Seat::find()->getOfficeAllSeats($officeId),
+            'id',
+            'office_seat_id'
+        );
+        $result['bookedOfficeSeats'] = ArrayHelper::getColumn(
+            SeatBook::find()->getOfficeReservedSeats($officeId, $bookingDate, $timeSlotId),
+            'seat_id'
+        );
+
         return $this->asJson(\json_encode($result));
     }
 
